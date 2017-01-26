@@ -1,0 +1,25 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "JS Calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/105ron/calculator.git"
+  },
+  "author": "Rhys Brooker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/105ron/calculator/issues"
+  },
+  "homepage": "https://github.com/105ron/calculator#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "browserslist": "last 2 versions"
+  }
+}
