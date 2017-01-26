@@ -48,10 +48,63 @@ h1 {
 
 .calc-box {
   width: 300px;
-  height: 380px;
   margin: 10px auto 10px auto;
-  border: 1px solid black;
-  border-radius: 3px;
+  padding: 15px;
+  border-radius: 6px;
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  background-color: #F5F3EE;
+  background-color: #000;
 }
+
+.screen {
+  background-color: #657d62;
+  text-align: right;
+  border-radius: 4px;
+}
+
+h4 {
+  margin: 0 16px;
+  padding: 8px;
+  font-size: 32px;
+}
+
+.buttons-container {
+  margin: 25px 0 15px 0;
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.button {
+  padding: 10px 0;
+  background-color: #928f8a;
+  margin: 2px 0;
+  -webkit-transition: background .25s ease-in-out;
+  transition: background .25s ease-in-out;
+  border-radius: 5px;
+}
+
+.button:hover {
+  cursor: pointer; 
+  cursor: hand;
+  background-color: #666460;
+}
+
+.dark {background-color: #312c29}
+
+.dark:hover {background-color: #5a5653}
+
+.orange{background-color: #d96208}
+
+.orange:hover {background-color: #e08139}
+
+.big {-ms-flex-preferred-size: 133px;flex-basis: 133px;}
+
+.small {-ms-flex-preferred-size: 64.5px;flex-basis: 64.5px;}
