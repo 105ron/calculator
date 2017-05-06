@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'lcd';
+  src: url('lcd.ttf') format('truetype');
+}
+
 html, body {
     margin: 0;
     height: calc(100% - 10px);
@@ -6,7 +11,7 @@ html, body {
 
 html {
   box-sizing: border-box;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'lcd', 'Orbitron', sans-serif;
   min-height: 460px;
   min-width: 640px;
 }
