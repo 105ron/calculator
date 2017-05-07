@@ -1,7 +1,18 @@
-document.getElementById("spy-on-me").onmousedown = function () {
-    console.log("User moused down");
-    return true; // Not needed, as long as you don't return false
-};
+"use strict";
+
+const buttons = document.getElementById("buttons-container");
+/*buttons.onmousedown = function() {
+  console.log('button pressed');
+  //return true;
+}
+var myFunction = function() {
+  console.log('poo');
+  return true;
+}*/
+
+buttons.addEventListener("click", function(event) {
+  let button_click = event.target.innerText;
+  });
 
 var add = function(firstNumber, secondNumber) {
   return (firstNumber + secondNumber)
