@@ -22,6 +22,24 @@ function updateDisplay() {
   screen.innerText = (displayString ? displayString : "0");
 }
 
+function calculate(equation) {
+  //replace 'x' and divide sign with JS operators in the string
+  equation = equation.replace(/\u00F7/i, '/');
+  equation = equation.replace(/x/i, '*');
+  let displayNumber = eval(equation);
+  displayString = displayNumber.toString();
+  if (displayNumber > 999999999999) {
+    displayString = "";
+    screen.innerText = "err"
+    alert("Number is too large for JSCalc");
+  } else if (displayString.length > 12) {
+    displayString = displayString.slice(0,12);
+    updateDisplay();
+  } else {
+    updateDisplay();
+  }
+}
+
 function updateString(click) {
   switch(click) {
     case "ac" :
@@ -30,6 +48,10 @@ function updateString(click) {
       break;
     case "ce" :
       displayString = displayString.slice(0, -1);
+      updateDisplay();
+      break;
+    case "=" :
+      calculate(displayString);
       updateDisplay();
       break;
     default :
