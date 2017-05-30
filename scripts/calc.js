@@ -1,17 +1,11 @@
 "use strict";
-
 const buttons = document.getElementById("buttons-container");
-/*buttons.onmousedown = function() {
-  console.log('button pressed');
-  //return true;
-}
-var myFunction = function() {
-  console.log('poo');
-  return true;
-}*/
+const screen = document.getElementById("screen");
+let operators = ["=", "-", "+", "x", "\u00F7"]; //no longer required... replaced with regex
 let buttonClick = "";
 let displayString = "";
-let screen = document.getElementById("screen")
+let calculatorString = ""
+
 buttons.addEventListener("click", function(event) {
   buttonClick = event.target.innerText;
   updateString(buttonClick);
@@ -50,14 +44,20 @@ function updateString(click) {
       displayString = displayString.slice(0, -1);
       updateDisplay();
       break;
-    case "=" :
-      calculate(displayString);
-      updateDisplay();
-      break;
     default :
       displayString += click;
+      operators = displayString.match(/\D+/g);
+      if (operators) {
+        if (operators.length > 1) {
+          console.log("time to calc");
+        } else {
+          console.log(displayString);
+        }
+      }
       updateDisplay();
   }
+
+
 }
 
 var add = function(firstNumber, secondNumber) {
