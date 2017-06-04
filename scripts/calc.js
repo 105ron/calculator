@@ -9,7 +9,8 @@ const operatorWord = {x:"multiply",
 const operators = ["=", "-", "+", "x", "\u00F7"]; //no longer required... replaced with regex
 let buttonClick = "";
 let displayString = "";
-let calculatorString = ""
+let calculatorString = "";
+let justCalculated = false;
 
 buttons.addEventListener("click", function(event) {
   buttonClick = event.target.innerText;
@@ -33,16 +34,24 @@ function calculate(equation) {
   let displayNumber = eval(equation); //the calculation
   displayString = displayNumber.toString();
   //Check number will fit on the display screen
-  if (displayNumber > 999999999999) {
+  if (displayNumber > 99999999999) {
     displayString = "";
     screen.innerText = "err"
     alert("Number is too large for JSCalc");
   } else if (displayString.length > 12) {
     displayString = displayString.slice(0,12);
     calculatorString = displayString;
+    console.log(buttonClick);
+    if (buttonClick == "=") {
+      justCalculated = true;
+    }
     updateDisplay();
   } else {
     calculatorString = displayString;
+    console.log(buttonClick);
+    if (buttonClick == "=") {
+      justCalculated = true;
+    }
     updateDisplay();
   }
 }
@@ -67,20 +76,14 @@ function updateString(click) {
         alert("You have already selected to " + operatorWord[calculatorString.slice(-1)] + " for this calculation");
         break;
       }
-      displayString += click;
-      calculatorString += click;
       let stringOperators = calculatorString.match(/(?![.=])\D+/g); //the operators but not '.' or '='
-      console.log(stringOperators);
       if (stringOperators) {
-        if (stringOperators.length > 1) {
-          calculate(calculatorString);
-          console.log('in here');
-        } else {
-          //after operator pressed clear the display
-          displayString = "";
-          updateDisplay();
-          break;
-        }
+        calculate(calculatorString);
+        calculatorString += click;
+        break;
+      } else {
+        calculatorString += click;
+        break;
       }
     case "=" :
       calculate(calculatorString);
@@ -91,28 +94,28 @@ function updateString(click) {
         break;
       }
     default : //numbers and decimal points
+      if (buttonClick.length > 1) {
+        console.log('you clicked parent div');
+        break;
+      }
+      if (displayString.length > 10) {
+        alert("JSCalc can't display any more numbers on it's LCD display");
+        break;
+      }
+      if (justCalculated == true) {
+        if (operators.includes(calculatorString.slice(-1))) {
+          console.log("hmm");
+        } else {
+          displayString ="";
+          calculatorString ="";
+        }
+      }
+      if (operators.includes(calculatorString.slice(-1))) {
+        displayString ="";
+      }
       displayString += click;
       calculatorString += click;
+      justCalculated = false;
       updateDisplay();
   }
-
-
 }
-
-var add = function(firstNumber, secondNumber) {
-  return (firstNumber + secondNumber)
-}
-
-var subtract = function(firstNumber, secondNumber) {
-  return (firstNumber - secondNumber)
-}
-
-var multiply = function(firstNumber, secondNumber) {
-  return (firstNumber * secondNumber)
-}
-
-var divide = function(firstNumber, secondNumber) {
-  return (firstNumber / secondNumber)
-}
-
-console.log(divide(3,4));
