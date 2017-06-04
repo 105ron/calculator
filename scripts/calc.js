@@ -6,7 +6,7 @@ const operatorWord = {x:"multiply",
                       "\u00F7":"divide",
                       "+":"add"
                     };
-const operators = ["=", "-", "+", "x", "\u00F7"]; //no longer required... replaced with regex
+const operators = ["=", "-", "+", "x", "\u00F7"];
 let buttonClick = "";
 let displayString = "";
 let calculatorString = "";
@@ -20,6 +20,11 @@ buttons.addEventListener("click", function(event) {
 function updateDisplay() {
   //Display the string unless it is "", then display "0"
   screen.innerText = (displayString ? displayString : "0");
+}
+
+function resetStrings() {
+  displayString = "";
+  calculatorString = "";
 }
 
 function updateStings() {
@@ -41,14 +46,12 @@ function calculate(equation) {
   } else if (displayString.length > 12) {
     displayString = displayString.slice(0,12);
     calculatorString = displayString;
-    console.log(buttonClick);
     if (buttonClick == "=") {
       justCalculated = true;
     }
     updateDisplay();
   } else {
     calculatorString = displayString;
-    console.log(buttonClick);
     if (buttonClick == "=") {
       justCalculated = true;
     }
@@ -59,8 +62,7 @@ function calculate(equation) {
 function updateString(click) {
   switch(click) {
     case "ac" :
-      displayString = "";
-      calculatorString = "";
+      resetStrings();
       updateDisplay();
       break;
     case "ce" :
@@ -104,17 +106,14 @@ function updateString(click) {
       }
       if (justCalculated == true) {
         if (operators.includes(calculatorString.slice(-1))) {
-          console.log("hmm");
         } else {
-          displayString ="";
-          calculatorString ="";
+          resetStrings();
         }
       }
       if (operators.includes(calculatorString.slice(-1))) {
         displayString ="";
       }
-      displayString += click;
-      calculatorString += click;
+      updateStings();
       justCalculated = false;
       updateDisplay();
   }
