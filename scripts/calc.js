@@ -27,7 +27,7 @@ function resetStrings() {
   calculatorString = "";
 }
 
-function updateStings() {
+function updateStings(click) {
   displayString += click;
   calculatorString += click;
 }
@@ -113,7 +113,7 @@ function updateString(click) {
       if (operators.includes(calculatorString.slice(-1))) {
         displayString ="";
       }
-      updateStings();
+      updateStings(click);
       justCalculated = false;
       updateDisplay();
   }
