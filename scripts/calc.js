@@ -66,8 +66,20 @@ function updateString(click) {
       updateDisplay();
       break;
     case "ce" :
-      displayString = displayString.slice(0, -1);
-      updateDisplay();
+      //same as AC if the calculation has just finished
+      if (justCalculated) {
+        resetStrings();
+        justCalculated = false;
+        updateDisplay();
+      } else if (operators.find(x => x == calculatorString.slice(-1))) {
+        //just remove the operator
+        calculatorString = calculatorString.slice(0, -1);
+      } else {
+        //remove the last character from both variables if they are a number
+        displayString = displayString.slice(0, -1);
+        calculatorString = calculatorString.slice(0, -1);
+        updateDisplay();
+      }
       break;
     case "+" :
     case "-" :
